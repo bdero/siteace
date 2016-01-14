@@ -9,6 +9,12 @@ Template.website_list.helpers({
   }
 });
 
+Template.website_item.helpers({
+  getRating: function() {
+    return this.upvotes - this.downvotes;
+  }
+});
+
 
 /////
 // template events

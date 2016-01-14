@@ -2,7 +2,10 @@ Meteor.methods({
   vote: function(website_id, upvote) {
     if (Meteor.user()) {
       Websites.update({_id: website_id}, {
-        $inc: {rating: upvote ? 1 : -1}
+        $inc: {
+          upvotes: upvote ? 1 : 0,
+          downvotes: upvote ? 0 : 1
+        }
       });
     } else {
       throw new Meteor.Error(
