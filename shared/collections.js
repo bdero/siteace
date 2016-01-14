@@ -5,6 +5,7 @@ Websites.allow({
     if (userId) {
       doc.submittedBy = Meteor.user()._id;
       doc.createdOn = new Date();
+      doc.rating = 0;
 
       return doc.title && doc.url && doc.description;
     }
