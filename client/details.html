@@ -1,0 +1,43 @@
+<template name="detail_page">
+  <div class="jumbotron">
+  	<h1><a href="{{url}}">{{title}}</a></h1>
+  	<p>
+  		{{description}}
+  	</p>
+    <p>
+      Added on {{createdOn}}
+    </p>
+    {{#if currentUser}}
+    	<a href="#" class="btn btn-default js-upvote">
+    		<span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>
+    	</a>
+    	<a href="#" class="btn btn-default js-downvote">
+    		<span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>
+    	</a>
+    {{/if}}
+    <p>
+      Rating: {{getRating}} ( Up: {{upvotes}} | Down: {{downvotes}} )
+    </p>
+
+    <a href="/" class="btn btn-warning">Back to list</a>
+  </div>
+
+  {{#if currentUser}}
+    {{> comment_form}}
+  {{/if}}
+  {{> comment_list}}
+</template>
+
+<template name="comment_form">
+  <form class="js-save-comment-form">
+    <div class="form-group col-md-6 col-md-offset-3">
+      <label for="title">Comment</label>
+      <input type="textarea" class="form-control" id="title" placeholder="This site is great!">
+      <button type="submit" class="btn btn-success comment-button">Add Comment</button>
+    </div>
+  </form>
+</template>
+
+<template name="comment_list">
+
+</template>

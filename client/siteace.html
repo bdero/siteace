@@ -20,31 +20,6 @@
   {{> website_list}}
 </template>
 
-<template name="detail_page">
-  <div class="jumbotron">
-  	<h1><a href="{{url}}">{{title}}</a></h1>
-  	<p>
-  		{{description}}
-  	</p>
-    <p>
-      Added on {{createdOn}}
-    </p>
-    {{#if currentUser}}
-    	<a href="#" class="btn btn-default js-upvote">
-    		<span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>
-    	</a>
-    	<a href="#" class="btn btn-default js-downvote">
-    		<span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>
-    	</a>
-    {{/if}}
-    <p>
-      Rating: {{getRating}} ( Up: {{upvotes}} | Down: {{downvotes}} )
-    </p>
-
-    <a href="/" class="btn btn-warning">Back to list</a>
-  </div>
-</template>
-
 <template name="navbar">
   <nav class="navbar navbar-default">
     <div class="container-fluid">
