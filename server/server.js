@@ -4,8 +4,9 @@ Meteor.methods({
       Websites.update({_id: website_id}, {
         $inc: {
           upvotes: upvote ? 1 : 0,
-          downvotes: upvote ? 0 : 1
-        }
+          downvotes: upvote ? 0 : 1,
+          rating: upvote ? 1 : -1
+        },
       });
     } else {
       throw new Meteor.Error(
