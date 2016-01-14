@@ -1,3 +1,17 @@
+Router.configure({
+  layoutTemplate: 'main'
+});
+
+Router.route('/', function () {
+  this.render('navbar', {
+    to: 'navbar'
+  });
+
+  this.render('listing_page', {
+    to: 'page'
+  });
+});
+
 /////
 // template helpers
 /////
