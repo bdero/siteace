@@ -12,6 +12,19 @@ Router.route('/', function () {
   });
 });
 
+Router.route('/website/:_id', function () {
+  this.render('navbar', {
+    to: 'navbar',
+  });
+
+  this.render('detail_page', {
+    to: 'page',
+    data: function() {
+      return Websites.findOne({_id: this.params._id});
+    }
+  });
+});
+
 /////
 // template helpers
 /////
@@ -23,11 +36,13 @@ Template.website_list.helpers({
   }
 });
 
-Template.website_item.helpers({
+var item_helpers = {
   getRating: function() {
     return this.upvotes - this.downvotes;
   }
-});
+};
+Template.website_item.helpers(item_helpers);
+Template.detail_page.helpers(item_helpers);
 
 
 /////
@@ -40,7 +55,7 @@ var voteCallback = function(error) {
   }
 };
 
-Template.website_item.events({
+var item_events = {
   "click .js-upvote":function(event){
     // example of how you can access the id for the website in the database
     // (this is the data context for the template)
@@ -60,7 +75,9 @@ Template.website_item.events({
 
     return false;// prevent the button from reloading the page
   }
-})
+};
+Template.website_item.events(item_events);
+Template.detail_page.events(item_events);
 
 Template.website_form.events({
   "click .js-toggle-website-form":function(event){
