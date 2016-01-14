@@ -42,12 +42,13 @@ Template.website_form.events({
     $("#website_form").toggle('slow');
   },
   "submit .js-save-website-form":function(event){
+    Websites.insert({
+      title: event.target.title.value,
+      url: event.target.url.value,
+      description: event.target.description.value
+    });
 
-    // here is an example of how to get the url out of the form:
-    var url = event.target.url.value;
-    console.log("The url they entered is: "+url);
-
-    //  put your website saving code in here!
+    $("#website_form").toggle('slow');
 
     return false;// stop the form submit from reloading the page
 
