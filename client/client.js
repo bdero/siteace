@@ -95,3 +95,8 @@ Template.website_form.events({
     return false;// stop the form submit from reloading the page
   }
 });
+
+Template.comment_form.events({
+  "submit .js-save-comment-form": function(event) {
+  }
+});
