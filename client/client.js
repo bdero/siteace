@@ -44,6 +44,21 @@ var item_helpers = {
 Template.website_item.helpers(item_helpers);
 Template.detail_page.helpers(item_helpers);
 
+Template.comment_list.helpers({
+  comments: function() {
+    return Comments.find(
+      {website_id: Router.current().params._id},
+      {sort: {createdOn: -1}}
+    );
+  }
+});
+
+Template.comment.helpers({
+  author_email: function(submittedBy) {
+    var user = Meteor.users.findOne({_id: submittedBy});
+    return user.emails[0].address;
+  }
+});
 
 /////
 // template events
@@ -98,5 +113,10 @@ Template.website_form.events({
 
 Template.comment_form.events({
   "submit .js-save-comment-form": function(event) {
+    Comments.insert({
+      message: event.target.message.value,
+      website_id: event.target.website_id.value
+    });
+    return false;
   }
 });

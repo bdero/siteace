@@ -21,23 +21,51 @@
 
     <a href="/" class="btn btn-warning">Back to list</a>
   </div>
-
-  {{#if currentUser}}
-    {{> comment_form}}
-  {{/if}}
-  {{> comment_list}}
+  <div class="container">
+    <div class="row">
+      {{#if currentUser}}
+        {{> comment_form}}
+      {{/if}}
+    </div>
+    <div class="row">
+      {{> comment_list}}
+    </div>
+  </div>
 </template>
 
 <template name="comment_form">
   <form class="js-save-comment-form">
-    <div class="form-group col-md-6 col-md-offset-3">
+    <div class="form-group">
       <label for="title">Comment</label>
-      <input type="textarea" class="form-control" id="title" placeholder="This site is great!">
+      <input type="hidden" name="website_id" value="{{_id}}">
+      <input type="textarea" class="form-control" name="message" placeholder="This site is great!">
       <button type="submit" class="btn btn-success comment-button">Add Comment</button>
     </div>
   </form>
 </template>
 
 <template name="comment_list">
+  <div class="container">
+    {{#each comments}}
+      <div class="row">
+        {{> comment}}
+      </div>
+    {{/each}}
+  </div>
+</template>
 
+<template name="comment">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">
+        {{author_email submittedBy}}
+      </h3>
+    </div>
+    <div class="panel-body">
+      {{message}}
+    </div>
+    <div class="panel-footer">
+      at {{createdOn}}
+    </div>
+  </div>
 </template>
